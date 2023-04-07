@@ -1,0 +1,16 @@
+{
+  "name": "chatgpt-server",
+  "version": "1.0.0",
+  "description": "backend server for chatgpt clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aditya Gupta",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "morgan": "^1.10.0",
+    "openai": "^3.2.1"
+  }
+}
