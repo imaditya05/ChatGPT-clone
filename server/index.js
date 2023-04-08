@@ -1,7 +1,10 @@
 const { Configuration, OpenAIApi } = require('openai');
+const cors = require('cors');
 const express = require('express');
 const port = 8000;
 const app = express();
+app.use(express.json());
+app.use(cors());
 require('dotenv').config();
 const configuration = new Configuration({
   organization: 'org-VLrAjH6KyG8xSMF6Uj8azpol',
@@ -11,17 +14,18 @@ const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
 app.post('/', async (req, res) => {
+  const { message } = req.body;
+  console.log(message);
   const response = await openai.createCompletion({
     model: 'text-davinci-003',
-    prompt: 'Say How are you doing',
-    max_tokens: 7,
-    temperature: 0,
+    prompt: `${message}`,
+    max_tokens: 100,
+    temperature: 0.5,
   });
 
-  console.log(response.data.choices[0].text);
   res.status(200).send({
     success: true,
-    data: response.data,
+    message: response.data.choices[0].text,
   });
 });
 
