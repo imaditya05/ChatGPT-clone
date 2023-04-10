@@ -9,8 +9,8 @@ const ChatBox = () => {
   async function handleSubmit(event) {
     event.preventDefault();
     let chatLogNew = [...chatLog, { user: 'me', message: `${input}` }];
-    await setInput('');
-    await setChatLog(chatLogNew);
+    setInput('');
+    setChatLog(chatLogNew);
 
     const messages = chatLogNew.map((message) => message.message).join('\n');
     //Request from API
@@ -25,7 +25,7 @@ const ChatBox = () => {
       }),
     });
     const data = await response.json();
-    await setChatLog([
+    setChatLog([
       ...chatLogNew,
       {
         user: 'gpt',
